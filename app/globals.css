@@ -43,7 +43,6 @@
   --background-image-auth-light: url("/images/auth-light.png");
 
   --breakpoint-xs: 420px;
-
   --font-inter: var(--font-inter);
   --font-space-grotesk: var(--font-space-grotesk);
 }
@@ -65,6 +64,7 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 }
+
 
 @utility background-light850_dark100 {
   @apply bg-light-850 dark:bg-dark-100;
