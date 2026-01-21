@@ -45,7 +45,6 @@ const RootLayout = async ({
           enableSystem
           disableTransitionOnChange
           >
-            
             {children}
           </ThemeProvider>
           <Toaster />

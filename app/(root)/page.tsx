@@ -1,9 +1,8 @@
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import ROUTE from "@/constants/route";
+import ROUTE from "@/constants/routes";
 
 const Home = async () => {
-  
   return (
     <>
       <h1 className="h1-bold">Welcome to DevFlow</h1>
