@@ -1,9 +1,8 @@
-import React from 'react'
 
-const page = () => {
+const Tags = () => {
   return (
-    <div>page</div>
+    <div>this is tags page</div>
   )
 }
 
-export default page
+export default Tags
