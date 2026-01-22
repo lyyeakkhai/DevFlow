@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import Navbar from "@/components/navigation/navbar";
+import { Toaster } from "@/components/ui/sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
+import { ReactNode } from "react";
 
 const inter = localFont({
   src: "./fonts/inter_VF.ttf",
@@ -24,24 +27,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const RootLayout = async ({
   children,
 }: Readonly<{
-  children: React.ReactNode;
-}>) {
+  children: ReactNode;
+}>) => {
+  // fetch data from the sever and pass it to the sessionProvide which is client component that allow to use session data every where by using useSession for the auth.js package
+  const session = await auth();
+
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
-        <ThemeProvider 
-        attribute="class" 
-        defaultTheme="system" 
-        enableSystem
-        disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
-      </body>
+      <head>
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+      </head>
+      <SessionProvider session={session}> 
+        <body className={`${inter.className} ${spaceGrotesk.variable} antialiased`}>
+          <ThemeProvider 
+          attribute="class" 
+          defaultTheme="system" 
+          enableSystem
+          disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   );
 }
+
+export default RootLayout;

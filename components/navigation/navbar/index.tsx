@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link';
 import Theme from './theme';
+import MobileNavigation from './MobileNavigation';
 
 
 const Navbar = () => {
@@ -18,9 +19,10 @@ const Navbar = () => {
                 Dev<span className='text-primary-500'>Flow</span>
             </p>
         </Link>
-        <p>Globle search</p>
+        <p>Global search</p>
         <div className='flex-center gap-4'>
             <Theme />
+            <MobileNavigation />
         </div>
     </nav>
   )
