@@ -3,7 +3,7 @@ import SidebarNavigation from "@/components/navigation/LeftSidebar";
 import { ReactNode } from "react";
 import RightSidebar from "@/components/navigation/RtighSidebar";
 
-const Rootlayout = ({ children }: { children: ReactNode }) => {
+const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative">
       <Navbar />
@@ -20,4 +20,4 @@ const Rootlayout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Rootlayout;
+export default RootLayout;
