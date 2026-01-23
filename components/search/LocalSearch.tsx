@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 
 interface LocalSearchProps {
-  route: string;
   iconPosition?: "left" | "right";
   imgSrc?: string;
   placeholder?: string;
@@ -14,7 +13,6 @@ interface LocalSearchProps {
 }
 
 const LocalSearch = ({
-  route,
   iconPosition = "left",
   imgSrc = "/icons/search.svg",
   placeholder = "Search questions...",
@@ -41,7 +39,8 @@ const LocalSearch = ({
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="paragraph-regular no-focus placeholder background-light800_darkgradient border-none shadow-none outline-none"
+        className="paragraph-regular no-focus placeholder background-light800_darkgradient 
+                   border-none shadow-none outline-none"
       />
 
       {iconPosition === "right" && (

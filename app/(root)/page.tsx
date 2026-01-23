@@ -19,7 +19,6 @@ const Home = async () => {
       </section>
       <section className="mt-11">
         <LocalSearch
-          route="/"
           iconPosition="left"
           imgSrc="/icons/search.svg"
           placeholder="Search questions..."
