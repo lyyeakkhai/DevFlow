@@ -34,6 +34,10 @@ const LocalSearch = ({ route, imgSrc, placeholder, otherClasses }: Props) => {
 
         router.push(newUrl, { scroll: false });
       } else {
+        // when search query is empty, it mean that the pathname is the current route there is no query value comefrom search params
+        // the condition checks if we are on the same route as the current pathname
+        // this logic is mean that eventhose the search query is empty but the url still has the query param from the prevsearch we need to remove it
+        // by checking the condition below we ensure that we only remove the query param when we are on the same route
         if (pathname === route) {
           const newUrl = removeKeysFromUrlQuery({
             params: searchParams.toString(),

@@ -26,12 +26,16 @@ export const removeKeysFromUrlQuery = ({
   params,
   keysToRemove,
 }: RemoveUrlQueryParams) => {
+
+// we parse the existing query string into an object
   const queryString = qs.parse(params);
 
+  // we loop through the keys to remove and delete them from the query string
   keysToRemove.forEach((key) => {
     delete queryString[key];
   });
 
+  // we stringify the updated query string back into a URL
   return qs.stringifyUrl(
     {
       url: window.location.pathname,
