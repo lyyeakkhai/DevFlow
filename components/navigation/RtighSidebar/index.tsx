@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ROUTE from "@/constants/routes";
-import TagsCard from "@/components/tags";
+import TagsCard from "@/components/cards/TagCard";
 
 const toQuestions = [
     { _id: "1", title: "How to implement authentication in Next.js?"},

@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { formUrlQuery, removeKeysFromUrlQuery } from "@/lib/url"
+import { formUrlQuery, removeKeysFromUrlQuery } from "@/lib/url";
 
 import { Input } from "../ui/input";
 
@@ -22,8 +22,13 @@ const LocalSearch = ({ route, imgSrc, placeholder, otherClasses }: Props) => {
   const query = searchParams.get("query") || "";
 
   const [searchQuery, setSearchQuery] = useState(query);
-
+  const previousSearchRef = useRef(searchQuery);
+  
   useEffect(() => {
+    // Only trigger if search actually changed
+    if (previousSearchRef.current === searchQuery) return;
+
+    previousSearchRef.current = searchQuery;
     const delayDebounceFn = setTimeout(() => {
       if (searchQuery) {
         const newUrl = formUrlQuery({
@@ -56,20 +61,14 @@ const LocalSearch = ({ route, imgSrc, placeholder, otherClasses }: Props) => {
     <div
       className={`background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4 ${otherClasses}`}
     >
-      <Image
-        src={imgSrc}
-        width={24}
-        height={24}
-        alt="Search"
-        className="cursor-pointer"
-      />
+      <Image src={imgSrc} width={24} height={24} alt="Search" className="cursor-pointer" />
 
       <Input
         type="text"
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className=" paragraph-regular no-focus placeholder text-dark400_light700 border-none shadow-none outline-none"
+        className="paragraph-regular no-focus placeholder text-dark400_light700 border-none shadow-none outline-none"
       />
     </div>
   );
