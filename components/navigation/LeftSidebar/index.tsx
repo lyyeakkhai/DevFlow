@@ -19,7 +19,7 @@ import { signOut } from "@/auth";
 const LeftSidebar = async () => {
   const isLogIN = (await auth()) || false;
   return (
-    <section className="custom-scrollbar background-light900_dark200 light-border sticky top-0 left-0 hidden h-screen flex-col justify-between border-2 p-6 pt-36 sm:flex sm:w-fit lg:w-[266px]">
+    <section className="custom-scrollbar background-light900_dark200 sticky top-0 left-0 hidden h-screen flex-col justify-between p-6 pt-36 sm:flex sm:w-fit lg:w-[266px]">
       <div className="flex flex-col gap-2">
         <NavLinks />
       </div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
+import { auth } from "@/auth";
 
 const questions = [
   {
@@ -52,7 +53,9 @@ const Home = async ({ searchParams }: SearchParams) => {
       : true;
     return matchesQuery && matchesFilter;
   });
-  
+
+
+  console.log(await auth());
 
   return (
     <>
