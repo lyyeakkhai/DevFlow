@@ -2,7 +2,6 @@ import { model, models, Schema } from "mongoose";
 
 // define type for user
 export interface IUser {
-  _id: string;
   name: string;
   username: string;
   email: string;
@@ -14,9 +13,8 @@ export interface IUser {
 }
 
 // first we need to define our schema
-const userSchema = new Schema(
+const userSchema = new Schema<IUser>(
   {
-    _id: { type: String, required: true },
     name: { type: String, required: true },
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },

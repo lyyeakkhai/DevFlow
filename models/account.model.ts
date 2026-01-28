@@ -1,7 +1,7 @@
 import { schema } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import { Schema, models, model, Types } from "mongoose";
 
-export interface Account {
+export interface IAccount {
   userId: Types.ObjectId;
   name: string;
   image?: string;
@@ -10,7 +10,7 @@ export interface Account {
   providerAccountId: string;
 }
 
-const accountSchema = new Schema(
+const accountSchema = new Schema<IAccount>(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     name: { type: String, required: true },
@@ -22,6 +22,6 @@ const accountSchema = new Schema(
   { timestamps: true }
 );
 
-const Account = models?.Account || model<Account>("Account", accountSchema);
+const Account = models?.Account || model<IAccount>("Account", accountSchema);
 
 export default Account;
