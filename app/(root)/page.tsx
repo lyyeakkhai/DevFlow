@@ -6,6 +6,7 @@ import ROUTES from "@/constants/routes";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
 import { auth } from "@/auth";
+import dbConnect  from "@/lib/mongoose";
 
 const questions = [
   {
@@ -43,6 +44,7 @@ interface SearchParams {
 }
 
 const Home = async ({ searchParams }: SearchParams) => {
+
   // so we check is the  query param exist in the url or not if not we can just set it to the empty string
   const { query = "" , filter = "" } = await searchParams;
 

@@ -75,7 +75,7 @@ export const UserSchema = z.object({
   image: z.string().url('Invalid image URL').optional(),
   location: z.string().optional(),
   portfolio: z.string().url('Invalid portfolio URL').optional(),
-  reputation: z.number().optional(),
+  reputations: z.number().optional(),
 });
 
 export const AccountSchema = z.object({
