@@ -23,7 +23,7 @@ const LeftSidebar = async () => {
       <div className="flex flex-col gap-2">
         <NavLinks />
       </div>
-      {isLogIN ? (
+      {isLoggedIn ? (
         <form
           className="flex min-h-[41px] w-full items-center justify-start gap-2.5 rounded-lg p-4 shadow-none"
           action={async () => {
