@@ -1,4 +1,3 @@
-import { schema } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import { Schema, models, model, Types } from "mongoose";
 
 export interface IAccount {

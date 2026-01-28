@@ -5,11 +5,11 @@ import mongoose, { Mongoose } from 'mongoose';
 // first we need to connect to the database
 
 // we need to declare the interface for the connection 4
-const MONGODB_URI = process.env.DATABASE_URI || ""; // add your mongodb connection string here
+const MONGODB_URI = process.env.MONGODB_URI || ""; // add your mongodb connection string here
 
 if(!MONGODB_URI) {
     throw new Error(
-        "Please define the MONGODB_URI environment variable inside .env.local"
+        "Please define the MONGODB_URI environment variable inside process.env.MONGODB_URI"
     )
 }
 
@@ -22,13 +22,14 @@ interface MongooseCache {
 
 // then cached the connection  to prevent form the unnecessary connections then lead to limit connection requests
 declare global {
-    var mongoose: MongooseCache;
+    var mongooseCache: MongooseCache | undefined;
 }
 
 // this we need to check if the global mongoose is already defined and cached
-let cached = global.mongoose;
+let cached = globalThis.mongooseCache;
 if (!cached) {
-    cached = { conn: null, promise: null };
+     cached = { conn: null, promise: null };
+    globalThis.mongooseCache = cached;
 }
 
 const dbConnect = async (): Promise<Mongoose> => {

@@ -45,7 +45,6 @@ interface SearchParams {
 
 const Home = async ({ searchParams }: SearchParams) => {
 
-  dbConnect();
   // so we check is the  query param exist in the url or not if not we can just set it to the empty string
   const { query = "" , filter = "" } = await searchParams;
 
