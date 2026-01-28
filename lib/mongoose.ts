@@ -26,9 +26,9 @@ declare global {
 }
 
 // this we need to check if the global mongoose is already defined and cached
-const cached = global.mongoose;
+let cached = global.mongoose;
 if (!cached) {
-    global.mongoose = { conn: null, promise: null };
+    cached = { conn: null, promise: null };
 }
 
 const dbConnect = async (): Promise<Mongoose> => {
