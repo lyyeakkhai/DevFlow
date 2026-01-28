@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ROUTE from "@/constants/routes";
-import TagsCard from "@/components/tags";
+import TagsCard from "@/components/cards/TagCard";
 
 const toQuestions = [
     { _id: "1", title: "How to implement authentication in Next.js?"},
@@ -26,7 +26,7 @@ const RightSidebar = () => {
 
 
   return(
-  <section className="pt-custom-scrollbar background-light900_dark200 light-border sticky top-0 left-0 hidden h-screen flex-col p-6 pt-36 sm:flex sm:w-fit lg:w-[330px] ">
+  <section className="pt-36 custom-scrollbar background-light900_dark200 light-border sticky right-0 top-0 flex h-screen w-[350px] flex-col gap-6 overflow-y-auto border-l p-6 shadow-light-300 dark:shadow-none max-xl:hidden">
     <div className="flex flex-col">
         <h3 className="h3-bold text-dark100_light900">
             Hot Network
@@ -50,7 +50,7 @@ const RightSidebar = () => {
         </h3>
         <div  className="mt-6 w-full flex flex-col gap-3">
             {popularTags.map(({ _id, title, question }) => (
-                <TagsCard key={_id} id={_id} name={title} question={question} showCount compact />
+                <TagsCard key={_id} _id={_id} name={title} question={question} showCount compact />
             ))}
         </div>
     </div>

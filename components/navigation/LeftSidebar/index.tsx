@@ -15,31 +15,38 @@ import {
 import ROUTES from "@/constants/routes";
 import NavLinks from "../navbar/NavLinks";
 import { signOut } from "@/auth";
-import ROUTE from "@/constants/routes";
 
 const LeftSidebar = async () => {
-  const isLogIN = await auth() || false;
+  const isLoggedIn = !!(await auth());
   return (
-    <section className="custom-scrollbar background-light900_dark200 light-border border-2 sticky top-0 left-0 hidden h-screen flex-col justify-between p-6 pt-36 sm:flex sm:w-fit lg:w-[266px]">
+    <section className="custom-scrollbar background-light900_dark200 sticky top-0 left-0 hidden h-screen flex-col justify-between p-6 pt-36 sm:flex sm:w-fit lg:w-[266px]">
       <div className="flex flex-col gap-2">
         <NavLinks />
       </div>
       {isLogIN ? (
         <form
-          className="flex gap-2.5 items-center justify-start min-h-[41px] w-full rounded-lg shadow-none ml-3"
+          className="flex min-h-[41px] w-full items-center justify-start gap-2.5 rounded-lg p-4 shadow-none"
           action={async () => {
             "use server";
             await signOut({ redirectTo: ROUTES.SIGN_IN });
           }}
         >
-          <Image 
-          src="/icons/Logout.svg"
-          alt="Logout Icon"
-          width={20}
-          height={20}
-          className="invert-colors object-contain"
-          />
-          <Button type="submit" className="background-light900_dark200 p-0 text-dark200_light800 h2-semibold hover:bg-light800_dark300">Log Out</Button>
+          <div className="p-[5.3px]">
+            <Image
+              src="/icons/Logout.svg"
+              alt="Logout Icon"
+              width={20}
+              height={20}
+              className="invert-colors object-contain"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            className="background-light900_dark200 text-dark200_light800 hover:bg-light800_dark300 hidden p-0 lg:block"
+          >
+            <span className="base-semibold">Log Out</span>
+          </Button>
         </form>
       ) : (
         <div className="flex flex-col gap-3">
