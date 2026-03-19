@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/routes";
 import HomeFilter from "@/components/filters/HomeFilter";
 import QuestionCard from "@/components/cards/QuestionCard";
-import { auth } from "@/auth";
-import dbConnect  from "@/lib/mongoose";
+import handleError from "@/lib/handlers/error";
+import { NotFoundError, RequestError } from "@/lib/http-errors";
 
 const questions = [
   {
@@ -43,7 +43,20 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
 
+const test = async () => {
+  try {
+    throw new NotFoundError("Test error");
+  } catch (error) {
+    return handleError(error);
+  }
+}
+
+
 const Home = async ({ searchParams }: SearchParams) => {
+
+  const result = await test();
+  console.log(result);
+  
 
   // so we check is the  query param exist in the url or not if not we can just set it to the empty string
   const { query = "" , filter = "" } = await searchParams;
@@ -56,8 +69,6 @@ const Home = async ({ searchParams }: SearchParams) => {
     return matchesQuery && matchesFilter;
   });
 
-
-  console.log(await auth());
 
   return (
     <>
